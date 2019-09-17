@@ -1,0 +1,18 @@
+.comment-list-component{
+    text-align: left;
+}
+
+.comment-list-component label{
+    font-weight: 600;
+}
+.comment-list-component .list-group-item div{
+    /* display: inline-block; */
+    float: left;
+    height: 38px;
+    line-height: 38px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.comment-list-component ul .list-group-item{
+    text-align: right;
+}

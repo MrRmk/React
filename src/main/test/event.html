@@ -1,0 +1,105 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <title>React events</title>
+        <!-- <script src="react.js"></script>
+        <script src="react-dom.js"></script>
+        <script src="browser.min.js"></script> -->
+        <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+        <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+        <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+        <style type="text/css">
+            #container {
+                padding: 50px;
+                background-color: #FFF;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script type="text/babel">
+            // 挂载点
+            var destination = document.querySelector("#container");
+            // 构建基础组件--数字
+            var Counter = React.createClass({
+                render: function (){
+                    // 数字样式
+                    var textStyle = {
+                        fontSize: 72,
+                        fontFamlily: "sans-serif",
+                        color: "#333",
+                        fontWeight: "bold"
+                    }
+
+                    return (
+                        <div style={textStyle}>
+                            {this.props.display}
+                        </div>
+                    )
+                }
+            });
+
+            // 外形组件--背景+按钮
+            var CountParent = React.createClass({
+                getInitialState: function() {
+                    return ({
+                        count: 0
+                    })
+                },
+
+                // 事件响应函数
+                increase : function(e){
+                    var currentCount = this.state.count;
+                    if( e.shiftKey == true ){//按下键盘shift键
+                        currentCount += 10;
+                    }else{
+                        currentCount += 1;
+                    }
+
+                    this.setState({
+                        // count: this.state.count + 1
+                        count : currentCount
+                    });
+                },
+
+                render: function() {
+                    // 背景样式
+                    var backgroundStyle = {
+                        padding: 50,
+                        backgroundColor: "#FFC53A",
+                        width: 250,
+                        height: 100,
+                        borderRadius: 10,
+                        textAlign: "center"
+                    }
+
+                    //按钮样式
+                    var buttonStyle = {
+                        fonSize: "1em",
+                        width: 30,
+                        height: 30,
+                        fontFamlily: "sans-serif",
+                        color: "#333",
+                        fontWeight: "bold",
+                        lineWeight: "3px"
+                    }
+
+                    return (
+                        <div style={backgroundStyle}>
+                            <Counter display={this.state.count} />
+                            <button style={buttonStyle} onClick={this.increase} >+</button>
+                        </div>
+                    )
+                }
+            });
+
+            ReactDOM.render(
+                <div>
+                    <CountParent/>    
+                </div>,
+                destination
+            )
+
+        </script>
+    </body>
+</html>
